@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("team-cmd-ers-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c23f55ae5e500b909069c1fe991df36fe9026696")]
 [assembly: System.Reflection.AssemblyProductAttribute("team-cmd-ers-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("team-cmd-ers-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

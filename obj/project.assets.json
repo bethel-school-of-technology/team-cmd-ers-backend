@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\rdorr\\.nuget\\packages\\": {}
+    "C:\\Users\\jford\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rdorr\\OneDrive\\Desktop\\BST Final Project\\team-cmd-ers-backend\\team-cmd-ers-backend.csproj",
+      "projectUniqueName": "C:\\Users\\jford\\Documents\\FSWD\\1134-FINAL\\team-cmd-ers-backend\\team-cmd-ers-backend.csproj",
       "projectName": "team-cmd-ers-backend",
-      "projectPath": "C:\\Users\\rdorr\\OneDrive\\Desktop\\BST Final Project\\team-cmd-ers-backend\\team-cmd-ers-backend.csproj",
-      "packagesPath": "C:\\Users\\rdorr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rdorr\\OneDrive\\Desktop\\BST Final Project\\team-cmd-ers-backend\\obj\\",
+      "projectPath": "C:\\Users\\jford\\Documents\\FSWD\\1134-FINAL\\team-cmd-ers-backend\\team-cmd-ers-backend.csproj",
+      "packagesPath": "C:\\Users\\jford\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jford\\Documents\\FSWD\\1134-FINAL\\team-cmd-ers-backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rdorr\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jford\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -54,6 +59,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.18, 7.0.18]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.18, 7.0.18]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.18, 7.0.18]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.18, 7.0.18]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -62,7 +85,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }
