@@ -11,6 +11,7 @@ public class Goal
     public string? Type { get; set; }
     [Required]
     public int GoalToReach { get; set; }
+    public int UserCurrent { get; set; } //where the user is currently on the way to acheiving their goal
     public string DateCreated { get; set; }
     //public int UserId { get; set; }
     //public virtual User? User { get; set; }
