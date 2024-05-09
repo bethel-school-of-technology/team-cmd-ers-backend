@@ -12,8 +12,8 @@ public class Goal
     [Required]
     public int GoalToReach { get; set; }
     public string DateCreated { get; set; }
-    public int UserId { get; set; }
-    public virtual User? User { get; set; }
+    //public int UserId { get; set; }
+    //public virtual User? User { get; set; }
 
     public Goal()
     {
