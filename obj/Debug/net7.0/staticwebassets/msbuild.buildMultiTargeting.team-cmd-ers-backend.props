@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\team-cmd-ers-backend.props" />
+</Project>
