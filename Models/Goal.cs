@@ -12,7 +12,7 @@ public class Goal
     [Required]
     public int GoalToReach { get; set; }
     [Required]
-    public int UserCurrent { get; set; } //where the user is currently on the way to acheiving their goal
+    public int UserProgress { get; set; } //where the user is currently on the way to acheiving their goal
     public string DateCreated { get; set; }
     //public int UserId { get; set; }
     //public virtual User? User { get; set; }
