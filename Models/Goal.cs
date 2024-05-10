@@ -12,7 +12,8 @@ public class Goal
     [Required]
     public int GoalToReach { get; set; }
     [Required]
-    public int UserCurrent { get; set; } //where the user is currently on the way to acheiving their goal
+    //Total to change so the user can track their Goal (May want to update to an array or map later so the user can retrieve previous days numbers)
+    public int UserProgress { get; set; }
     public string DateCreated { get; set; }
     //public int UserId { get; set; }
     //public virtual User? User { get; set; }

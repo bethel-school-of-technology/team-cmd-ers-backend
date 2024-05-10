@@ -22,7 +22,7 @@ public class GoalDbContext : DbContext
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Type).IsRequired();
             entity.Property(e => e.GoalToReach).IsRequired();
-            entity.Property(e => e.UserCurrent).IsRequired();
+            entity.Property(e => e.UserProgress).IsRequired();
             entity.Property(e => e.DateCreated);
         });
     }
