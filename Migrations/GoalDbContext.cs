@@ -21,6 +21,7 @@ public class GoalDbContext : DbContext
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Type).IsRequired();
+            entity.Property(e => e.Description);
             entity.Property(e => e.GoalToReach).IsRequired();
             entity.Property(e => e.UserProgress).IsRequired();
             entity.Property(e => e.DateCreated);

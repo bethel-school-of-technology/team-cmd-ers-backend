@@ -9,6 +9,7 @@ public class Goal
     public string? Name { get; set; }
     [Required]
     public string? Type { get; set; }
+    public string? Description { get; set; }
     [Required]
     public int GoalToReach { get; set; }
     [Required]
