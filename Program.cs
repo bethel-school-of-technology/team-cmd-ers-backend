@@ -26,6 +26,7 @@ app.UseCors(builder => builder
     .WithOrigins("http://localhost:4200", "http://localhost:3000")
     .AllowAnyHeader()
     .AllowAnyMethod());
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
