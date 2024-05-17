@@ -6,6 +6,7 @@ namespace Fit_Trac.Migrations;
 public class GoalDbContext : DbContext
 {
     public DbSet<Goal> Goal { get; set; }
+    public DbSet<User> User { get; set; }
 
     public GoalDbContext(DbContextOptions<GoalDbContext> options)
         : base(options)
@@ -25,6 +26,15 @@ public class GoalDbContext : DbContext
             entity.Property(e => e.GoalToReach).IsRequired();
             entity.Property(e => e.UserProgress).IsRequired();
             entity.Property(e => e.DateCreated);
+        });
+
+        modelBuilder.Entity<User>(entity => 
+        {
+            entity.HasKey(e => e.UserId);
+            entity.Property(e => e.FirstName).IsRequired();
+            entity.Property(e => e.LastName).IsRequired();
+            entity.HasIndex(e => e.Email).IsUnique();
+            entity.Property(e => e.Password).IsRequired();
         });
     }
 }
