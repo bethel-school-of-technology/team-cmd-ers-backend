@@ -5,7 +5,8 @@ namespace Fit_Trac.Models;
 
 public class User
 {
-    public int userId { get; set; }
+    [JsonIgnore]
+    public int UserId { get; set; }
     [Required]
     public string? FirstName { get; set; }
     [Required]
