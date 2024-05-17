@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IGoalRepository, GoalRepository>();
 builder.Services.AddSqlite<GoalDbContext>("Data Source=Fit_Trac.db");
 
