@@ -66,3 +66,13 @@ C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug
 C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\team-cmd-ers-backend.staticwebassets.runtime.json
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\rdorr\OneDrive\Desktop\BST Final Project\team-cmd-ers-backend\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

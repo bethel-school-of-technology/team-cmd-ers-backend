@@ -48,6 +48,8 @@ public class GoalRepository : IGoalRepository
         if(ogGoal != null)
         {
             ogGoal.UserProgress = newGoal.UserProgress;
+            ogGoal.Description = newGoal.Description;
+            ogGoal.Name = newGoal.Name;
             _context.SaveChanges();
         }
 

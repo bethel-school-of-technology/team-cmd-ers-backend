@@ -1,5 +1,7 @@
 using Fit_Trac.Models;
 using Fit_Trac.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fit_Trac.Controllers;
@@ -38,6 +40,7 @@ public class GoalController : ControllerBase
     }
     //adds a new goal
     [HttpPost]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<Goal> CreateGoal(Goal newGoal)
     {
         if(!ModelState.IsValid || newGoal == null)
@@ -51,6 +54,7 @@ public class GoalController : ControllerBase
     //Updates a users goal (will need to update when we implement the user model)
     [HttpPut]
     [Route("{goalId:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<Goal> UpdateGoal(Goal goal)
     {
         if(!ModelState.IsValid || goal == null)
@@ -64,6 +68,7 @@ public class GoalController : ControllerBase
     //Deletes a users goal 
     [HttpDelete]
     [Route("{goalId:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<Goal> DeleteGoal(int goalId)
     {
         _goalRepository.DeleteGoal(goalId);
