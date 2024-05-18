@@ -71,7 +71,7 @@ public class AuthService : IAuthService
         //Creates JWT Token
         var jwt = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.Now.AddMinutes(15),
+            expires: DateTime.Now.AddMinutes(60),
             signingCredentials: signInCredentials
         );
 
