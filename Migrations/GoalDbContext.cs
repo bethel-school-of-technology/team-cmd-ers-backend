@@ -25,10 +25,10 @@ public class GoalDbContext : DbContext
             entity.Property(e => e.Description);
             entity.Property(e => e.GoalToReach).IsRequired();
             entity.Property(e => e.UserProgress).IsRequired();
-            entity.Property(e => e.DateCreated);
+            entity.Property(e => e.DateCreated).IsRequired();
 
             entity.HasOne<User>(e => e.User)
-                .WithMany(e => e.Goal)
+                .WithMany(u => u.Goal)
                 .HasForeignKey(e => e.UserId);
         });
 
@@ -40,9 +40,9 @@ public class GoalDbContext : DbContext
             entity.HasIndex(e => e.Email).IsUnique();
             entity.Property(e => e.Password).IsRequired();
 
-            entity.HasMany(e => e.Goal)
-                .WithOne(e => e.User)
-                .HasForeignKey(e => e.UserId);
+            entity.HasMany<Goal>(e => e.Goal)
+                .WithOne(g => g.User)
+                .HasForeignKey(g => g.UserId);
         });
     }
 }
