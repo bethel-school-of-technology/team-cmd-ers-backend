@@ -37,7 +37,7 @@ public class GoalDbContext : DbContext
             entity.HasKey(e => e.UserId);
             entity.Property(e => e.FirstName).IsRequired();
             entity.Property(e => e.LastName).IsRequired();
-            entity.HasIndex(e => e.Email).IsUnique();
+            entity.HasIndex(x => x.Email).IsUnique();
             entity.Property(e => e.Password).IsRequired();
 
             entity.HasMany<Goal>(e => e.Goal)
