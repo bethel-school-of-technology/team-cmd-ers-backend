@@ -28,13 +28,13 @@ public class GoalController : ControllerBase
 
     //HttpGet to retieve all Goals in the Database
     [HttpGet]
-    [Route("all")]
     public ActionResult<IEnumerable<Goal>> GetAllGoals()
     {
         return Ok(_goalRepository.GetAllGoals());
     }
 
     [HttpGet]
+    [Route("user")]
     public ActionResult<IEnumerable<Goal>> GetGoalsByUserId()
     {
         var userId = GetUserId();
