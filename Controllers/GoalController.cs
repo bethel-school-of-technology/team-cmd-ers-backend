@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Fit_Trac.Models;
 using Fit_Trac.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,18 +20,36 @@ public class GoalController : ControllerBase
         _goalRepository = repository;
     }
 
-    //HttpGet to retieve all Goals in the Database (probably update to GetAllUserGoals when we implement the user model)
+    //Used to get the userId from JWT token 
+    private int GetUserId()
+    {
+        return int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+    }
+
+    //HttpGet to retieve all Goals in the Database
     [HttpGet]
+    [Route("all")]
     public ActionResult<IEnumerable<Goal>> GetAllGoals()
     {
         return Ok(_goalRepository.GetAllGoals());
     }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<Goal>> GetGoalsByUserId()
+    {
+        var userId = GetUserId();
+        return Ok(_goalRepository.GetGoalsByUserId(userId));
+    }
+
     //Retieves an individual goal based on goal id 
     [HttpGet]
     [Route("{goalId:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<Goal> GetGoalById(int goalId)
     {
-        var goal = _goalRepository.GetGoalById(goalId);
+        var userId = GetUserId();
+        var goal = _goalRepository.GetGoalById(goalId, userId);
+
         if(goal == null)
         {
             return NotFound();
@@ -43,6 +62,9 @@ public class GoalController : ControllerBase
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<Goal> CreateGoal(Goal newGoal)
     {
+        var userId = GetUserId();
+        newGoal.UserId = userId;
+
         if(!ModelState.IsValid || newGoal == null)
         {
             return BadRequest();
@@ -61,8 +83,10 @@ public class GoalController : ControllerBase
         {
             return BadRequest();
         }
+        
+        var userId = GetUserId();
+        var updatedGoal = _goalRepository.UpdateGoal(goal, userId);
 
-        var updatedGoal = _goalRepository.UpdateGoal(goal);
         return Ok(updatedGoal);
     }
     //Deletes a users goal 
@@ -71,7 +95,8 @@ public class GoalController : ControllerBase
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<Goal> DeleteGoal(int goalId)
     {
-        _goalRepository.DeleteGoal(goalId);
+        var userId = GetUserId();
+        _goalRepository.DeleteGoal(goalId, userId);
         return NoContent();
     }
 }
