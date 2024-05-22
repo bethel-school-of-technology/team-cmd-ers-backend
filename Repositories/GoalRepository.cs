@@ -22,9 +22,10 @@ public class GoalRepository : IGoalRepository
         return goal;
     }
 
-    public void DeleteGoal(int goalId) //Research how to check if the user sending the request is the owner of the goal
+    //Checks to see if the requesting user is authorized to delete this goal
+    public void DeleteGoal(int goalId, int userId)
     {
-        var goal = _context.Goal.Find(goalId);
+        var goal = _context.Goal.SingleOrDefault(g => g.Id == goalId && g.UserId == userId);
         if(goal != null)
         {
             _context.Goal.Remove(goal);
@@ -32,19 +33,26 @@ public class GoalRepository : IGoalRepository
         }
     }
 
-    public IEnumerable<Goal> GetAllGoals() //getallusergoals(int userId) _context.User.Include(Goal).Where(goal.userId === userId).ToList()??????
+    public IEnumerable<Goal> GetAllGoals()
     {
         return _context.Goal.ToList();
     }
 
-    public Goal GetGoalById(int goalId) //Research how to check if the user sending the request is the owner of the goal
+    //Checks to see if the requesting user is authorized to access this goal
+    public Goal GetGoalById(int goalId, int userId) 
     {
-        return _context.Goal.SingleOrDefault(g => g.Id == goalId);
+        return _context.Goal.SingleOrDefault(g => g.Id == goalId && g.UserId == userId);
     }
 
-    public Goal UpdateGoal(Goal updatedGoal) //Research how to check if the user sending the request is the owner of the goal
+    public IEnumerable<Goal> GetGoalsByUserId(int userId)
     {
-        var ogGoal = _context.Goal.Find(updatedGoal.Id);
+        return _context.Goal.Where(g => g.UserId == userId).ToList();
+    }
+
+    //Checks to see if the requesting user is authorized to update this goal
+    public Goal UpdateGoal(Goal updatedGoal, int userId)
+    {
+        var ogGoal = _context.Goal.SingleOrDefault(g => g.Id == updatedGoal.Id && g.UserId == userId);
         if(ogGoal != null)
         {
             ogGoal.UserProgress = updatedGoal.UserProgress;
