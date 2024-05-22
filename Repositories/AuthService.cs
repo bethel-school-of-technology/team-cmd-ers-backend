@@ -20,6 +20,7 @@ public class AuthService : IAuthService
         _context = context;
         _config = config;
     }
+    
     public User CreateUser(User user)
     {
         //HashPassword
@@ -38,11 +39,13 @@ public class AuthService : IAuthService
         var user = _context.User.SingleOrDefault(e => e.Email == email);
         var verified = false;
 
+        //Updates verified if the users password matches with the hashed password
         if (user != null)
         {
             verified = bcrypt.Verify(password, user.Password);
         }
 
+        //returns an empty string if the user doesn't exist or is unverified
         if (user == null || !verified)
         {
             return String.Empty;
@@ -57,22 +60,21 @@ public class AuthService : IAuthService
         var secretString = _config.GetValue<String>("TokenSecret");
         var signInKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretString));
 
-        var signInCredentials = new SigningCredentials(signInKey, SecurityAlgorithms.HmacSha256);
+        var signingCredentials = new SigningCredentials(signInKey, SecurityAlgorithms.HmacSha256);
 
         //Creates claims to add to our JWT/ This is information that the user has given us before
         var claims = new Claim[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
-            new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName ?? ""),
-            new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName ?? "")
+            new(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
+            new(JwtRegisteredClaimNames.FamilyName, user.LastName ?? ""),
+            new(JwtRegisteredClaimNames.GivenName, user.FirstName ?? "")
         };
 
         //Creates JWT Token
         var jwt = new JwtSecurityToken(
             claims: claims,
             expires: DateTime.Now.AddMinutes(60),
-            signingCredentials: signInCredentials
+            signingCredentials: signingCredentials
         );
 
         //Encodes Our Token
