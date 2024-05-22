@@ -24,7 +24,7 @@ public class Goal
 
     public Goal()
     {
-        this.DateCreated = DateTime.Now.ToString("MM-dd-yyyy");
+        DateCreated = DateTime.Now.ToString("MM-dd-yyyy");
     }
     
 }
