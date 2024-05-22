@@ -15,14 +15,14 @@ public class GoalRepository : IGoalRepository
         _context = context;
     }
 
-    public Goal CreateGoal(Goal goal)
+    public Goal CreateGoal(Goal goal) 
     {
         _context.Goal.Add(goal);
         _context.SaveChanges();
         return goal;
     }
 
-    public void DeleteGoal(int goalId)
+    public void DeleteGoal(int goalId) //Research how to check if the user sending the request is the owner of the goal
     {
         var goal = _context.Goal.Find(goalId);
         if(goal != null)
@@ -32,24 +32,24 @@ public class GoalRepository : IGoalRepository
         }
     }
 
-    public IEnumerable<Goal> GetAllGoals()
+    public IEnumerable<Goal> GetAllGoals() //getallusergoals(int userId) _context.User.Include(Goal).Where(goal.userId === userId).ToList()??????
     {
         return _context.Goal.ToList();
     }
 
-    public Goal GetGoalById(int goalId)
+    public Goal GetGoalById(int goalId) //Research how to check if the user sending the request is the owner of the goal
     {
         return _context.Goal.SingleOrDefault(g => g.Id == goalId);
     }
 
-    public Goal UpdateGoal(Goal newGoal)
+    public Goal UpdateGoal(Goal updatedGoal) //Research how to check if the user sending the request is the owner of the goal
     {
-        var ogGoal = _context.Goal.Find(newGoal.Id);
+        var ogGoal = _context.Goal.Find(updatedGoal.Id);
         if(ogGoal != null)
         {
-            ogGoal.UserProgress = newGoal.UserProgress;
-            ogGoal.Description = newGoal.Description;
-            ogGoal.Name = newGoal.Name;
+            ogGoal.UserProgress = updatedGoal.UserProgress;
+            ogGoal.Description = updatedGoal.Description;
+            ogGoal.Name = updatedGoal.Name;
             _context.SaveChanges();
         }
 
