@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fit_Trac.Controllers;
 
+[ApiController]
+[Route("[controller]")]
 public class AuthController: ControllerBase
 {
     private readonly ILogger<AuthController> _logger;
