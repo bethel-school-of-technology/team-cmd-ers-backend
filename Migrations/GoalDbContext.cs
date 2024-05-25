@@ -25,7 +25,11 @@ public class GoalDbContext : DbContext
             entity.Property(e => e.Description);
             entity.Property(e => e.GoalToReach).IsRequired();
             entity.Property(e => e.UserProgress).IsRequired();
-            entity.Property(e => e.DateCreated);
+            entity.Property(e => e.DateCreated).IsRequired();
+
+            entity.HasOne<User>(e => e.User)
+                .WithMany(u => u.Goal)
+                .HasForeignKey(e => e.UserId);
         });
 
         modelBuilder.Entity<User>(entity => 
@@ -33,8 +37,12 @@ public class GoalDbContext : DbContext
             entity.HasKey(e => e.UserId);
             entity.Property(e => e.FirstName).IsRequired();
             entity.Property(e => e.LastName).IsRequired();
-            entity.HasIndex(e => e.Email).IsUnique();
+            entity.HasIndex(x => x.Email).IsUnique();
             entity.Property(e => e.Password).IsRequired();
+
+            entity.HasMany<Goal>(e => e.Goal)
+                .WithOne(g => g.User)
+                .HasForeignKey(g => g.UserId);
         });
     }
 }

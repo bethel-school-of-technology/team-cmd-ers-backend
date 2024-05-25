@@ -15,16 +15,17 @@ public class GoalRepository : IGoalRepository
         _context = context;
     }
 
-    public Goal CreateGoal(Goal goal)
+    public Goal CreateGoal(Goal goal) 
     {
         _context.Goal.Add(goal);
         _context.SaveChanges();
         return goal;
     }
 
-    public void DeleteGoal(int goalId)
+    //Checks to see if the requesting user is authorized to delete this goal
+    public void DeleteGoal(int goalId, int userId)
     {
-        var goal = _context.Goal.Find(goalId);
+        var goal = _context.Goal.SingleOrDefault(g => g.Id == goalId && g.UserId == userId);
         if(goal != null)
         {
             _context.Goal.Remove(goal);
@@ -37,19 +38,26 @@ public class GoalRepository : IGoalRepository
         return _context.Goal.ToList();
     }
 
-    public Goal GetGoalById(int goalId)
+    //Checks to see if the requesting user is authorized to access this goal
+    public Goal GetGoalById(int goalId, int userId) 
     {
-        return _context.Goal.SingleOrDefault(g => g.Id == goalId);
+        return _context.Goal.SingleOrDefault(g => g.Id == goalId && g.UserId == userId);
     }
 
-    public Goal UpdateGoal(Goal newGoal)
+    public IEnumerable<Goal> GetGoalsByUserId(int userId)
     {
-        var ogGoal = _context.Goal.Find(newGoal.Id);
+        return _context.Goal.Where(g => g.UserId == userId).ToList();
+    }
+
+    //Checks to see if the requesting user is authorized to update this goal
+    public Goal UpdateGoal(Goal updatedGoal, int userId)
+    {
+        var ogGoal = _context.Goal.SingleOrDefault(g => g.Id == updatedGoal.Id && g.UserId == userId);
         if(ogGoal != null)
         {
-            ogGoal.UserProgress = newGoal.UserProgress;
-            ogGoal.Description = newGoal.Description;
-            ogGoal.Name = newGoal.Name;
+            ogGoal.UserProgress = updatedGoal.UserProgress;
+            ogGoal.Description = updatedGoal.Description;
+            ogGoal.Name = updatedGoal.Name;
             _context.SaveChanges();
         }
 
