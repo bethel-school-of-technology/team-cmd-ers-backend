@@ -35,6 +35,7 @@ public class GoalController : ControllerBase
 
     [HttpGet]
     [Route("user")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<IEnumerable<Goal>> GetGoalsByUserId()
     {
         var userId = GetUserId();
