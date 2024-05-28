@@ -6,4 +6,7 @@ public interface IAuthService
 {
     User CreateUser(User user);
     string SignIn(string email, string password);
+    UserDTO GetUserById(int userId);
+    User UpdateUserInfo(User updatedUser, int userId);
+    void DeleteUserData(int userId);
 }
