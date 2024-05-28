@@ -1,5 +1,8 @@
+using System.Security.Claims;
 using Fit_Trac.Models;
 using Fit_Trac.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fit_Trac.Controllers;
@@ -11,6 +14,10 @@ public class AuthController: ControllerBase
     private readonly ILogger<AuthController> _logger;
     private readonly IAuthService _authService;
 
+    private int GetUserId()
+    {
+        return int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+    }
     public AuthController(ILogger<AuthController> logger, IAuthService authService)
     {
         _logger = logger;
@@ -49,5 +56,40 @@ public class AuthController: ControllerBase
         }
 
         return Ok(token);
+    }
+
+    [HttpGet]
+    [Route("user")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public ActionResult<User> GetUser()
+    {
+        var userId = GetUserId();
+        return Ok(_authService.GetUserById(userId)); 
+    }
+
+    [HttpPut]
+    [Route("{email}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public ActionResult<User> UpdateUser(User user)
+    {
+        if(user == null || !ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        var userId = GetUserId();
+        var updatedUser = _authService.UpdateUserInfo(user, userId);
+
+        return Ok(updatedUser);
+    }
+
+    [HttpDelete]
+    [Route("{email}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public ActionResult<User> DeleteUser(string email)
+    {
+        var userId = GetUserId();
+        _authService.DeleteUserData(userId);
+        return NoContent();
     }
 }

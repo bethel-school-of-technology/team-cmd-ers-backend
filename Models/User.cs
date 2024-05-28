@@ -16,6 +16,7 @@ public class User
     public string? Email { get; set; }
     [Required]
     public string? Password { get; set; }
+    [JsonIgnore]
     public virtual ICollection<Goal>? Goal { get; set; }
 
 }

@@ -33,6 +33,31 @@ public class AuthService : IAuthService
         return user;
     }
 
+    public void DeleteUserData(int userId)
+    {
+        var user = _context.User.SingleOrDefault(u => u.UserId == userId);
+
+        if(user != null)
+        {
+            _context.User.Remove(user);
+            _context.SaveChanges();
+        }
+    }
+
+    //retrieves a single user
+    public UserDTO GetUserById(int userId)
+    {
+        var user = _context.User.SingleOrDefault(u => u.UserId == userId);
+        
+        UserDTO userDTO = new UserDTO{
+            FirstName = user?.FirstName,
+            LastName = user?.LastName,
+            Email = user?.Email
+        };
+
+        return userDTO;
+    }
+
     public string SignIn(string email, string password)
     {
         //Checks DB for our user when login is attempted
@@ -53,6 +78,23 @@ public class AuthService : IAuthService
 
         //Create and return JWT
         return TokenConstruction(user);
+    }
+
+    //Updates the users information
+    public User UpdateUserInfo(User updatedUser, int userId)
+    {
+        var user = _context.User.SingleOrDefault(u => u.UserId == userId);
+
+        if( user != null)
+        {
+            user.FirstName = updatedUser.FirstName;
+            user.LastName = updatedUser.LastName;
+            user.Email = updatedUser.Email;
+            user.Password = user.Password; //Not going to allow password updates due to length of time to include so this is just to initialize the password property to allow the change.
+            _context.SaveChanges();
+        }
+
+        return user;
     }
 
     private string TokenConstruction(User user)
