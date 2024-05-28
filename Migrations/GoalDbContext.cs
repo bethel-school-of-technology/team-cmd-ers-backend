@@ -29,7 +29,8 @@ public class GoalDbContext : DbContext
 
             entity.HasOne<User>(e => e.User)
                 .WithMany(u => u.Goal)
-                .HasForeignKey(e => e.UserId);
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<User>(entity => 
@@ -42,7 +43,8 @@ public class GoalDbContext : DbContext
 
             entity.HasMany<Goal>(e => e.Goal)
                 .WithOne(g => g.User)
-                .HasForeignKey(g => g.UserId);
+                .HasForeignKey(g => g.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }
