@@ -70,15 +70,15 @@ public class AuthController: ControllerBase
     [HttpPut]
     [Route("{email}")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public ActionResult<User> UpdateUser(User user)
+    public ActionResult<UserDTO> UpdateUser(UserDTO userDTO)
     {
-        if(user == null || !ModelState.IsValid)
+        if(userDTO == null || !ModelState.IsValid)
         {
             return BadRequest();
         }
 
         var userId = GetUserId();
-        var updatedUser = _authService.UpdateUserInfo(user, userId);
+        var updatedUser = _authService.UpdateUserInfo(userDTO, userId);
 
         return Ok(updatedUser);
     }

@@ -81,7 +81,7 @@ public class AuthService : IAuthService
     }
 
     //Updates the users information
-    public User UpdateUserInfo(User updatedUser, int userId)
+    public User UpdateUserInfo(UserDTO updatedUser, int userId)
     {
         var user = _context.User.SingleOrDefault(u => u.UserId == userId);
 
@@ -90,7 +90,7 @@ public class AuthService : IAuthService
             user.FirstName = updatedUser.FirstName;
             user.LastName = updatedUser.LastName;
             user.Email = updatedUser.Email;
-            user.Password = user.Password; //Not going to allow password updates due to length of time to include so this is just to initialize the password property to allow the change.
+            //user.Password = user.Password; //Not going to allow password updates due to length of time to include so this is just to initialize the password property to allow the change.
             _context.SaveChanges();
         }
 
