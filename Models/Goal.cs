@@ -19,7 +19,7 @@ public class Goal
     public int UserId { get; set; }
     [JsonIgnore]
     public virtual User? User { get; set; }
-    public ICollection<DailyGoalInput>? DailyGoalInput { get; set; }
+    public ICollection<DailyGoalInput> DailyGoalInput { get; set; }
 
     public Goal()
     {
