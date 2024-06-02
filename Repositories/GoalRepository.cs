@@ -55,7 +55,6 @@ public class GoalRepository : IGoalRepository
         var ogGoal = _context.Goal.SingleOrDefault(g => g.Id == updatedGoal.Id && g.UserId == userId);
         if(ogGoal != null)
         {
-            ogGoal.UserProgress = updatedGoal.UserProgress;
             ogGoal.Description = updatedGoal.Description;
             ogGoal.Name = updatedGoal.Name;
             _context.SaveChanges();
