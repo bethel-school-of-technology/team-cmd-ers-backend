@@ -1,6 +1,7 @@
 using Fit_Trac.Migrations;
 using Fit_Trac.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.ObjectPool;
 
 namespace Fit_Trac.Repositories;
@@ -41,7 +42,7 @@ public class GoalRepository : IGoalRepository
     //Checks to see if the requesting user is authorized to access this goal
     public Goal GetGoalById(int goalId, int userId) 
     {
-        return _context.Goal.SingleOrDefault(g => g.Id == goalId && g.UserId == userId);
+        return _context.Goal.Include(g => g.DailyGoalInput).SingleOrDefault(g => g.Id == goalId && g.UserId == userId);
     }
 
     public IEnumerable<Goal> GetGoalsByUserId(int userId)
