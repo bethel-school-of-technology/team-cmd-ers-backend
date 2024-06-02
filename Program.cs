@@ -37,6 +37,7 @@ builder.Services.AddSwaggerGen(c => {
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IGoalRepository, GoalRepository>();
+builder.Services.AddScoped<IDailyGoalInputsRepository, DailyGoalInputsRepository>();
 builder.Services.AddSqlite<GoalDbContext>("Data Source=Fit_Trac.db");
 
 builder.Services.AddAuthentication(options => 
