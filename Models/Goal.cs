@@ -24,6 +24,7 @@ public class Goal
     public Goal()
     {
         DateCreated = DateTime.Now.ToString("MM-dd-yyyy");
+        DailyGoalInput = new List<DailyGoalInput>();
     }
     
 }
