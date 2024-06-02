@@ -8,7 +8,7 @@ namespace Fit_Trac.Repositories;
 public class DailyGoalInputsRepository : IDailyGoalInputsRepository
 {
     private GoalDbContext _context;
-    DailyGoalInputsRepository(GoalDbContext context)
+    public DailyGoalInputsRepository(GoalDbContext context)
     {
         _context = context;
     }
