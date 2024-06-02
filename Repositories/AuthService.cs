@@ -28,7 +28,7 @@ public class AuthService : IAuthService
         user.Password = hashedPassword;
 
         //Creates New User
-        _context.Add(user);
+        _context.User.Add(user);
         _context.SaveChanges();
         return user;
     }
