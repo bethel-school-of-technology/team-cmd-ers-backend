@@ -47,7 +47,7 @@ public class GoalRepository : IGoalRepository
 
     public IEnumerable<Goal> GetGoalsByUserId(int userId)
     {
-        return _context.Goal.Where(g => g.UserId == userId).ToList();
+        return _context.Goal.Include(g => g.DailyGoalInput).Where(g => g.UserId == userId).ToList();
     }
 
     //Checks to see if the requesting user is authorized to update this goal
