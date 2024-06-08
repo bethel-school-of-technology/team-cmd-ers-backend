@@ -74,7 +74,7 @@ public class GoalController : ControllerBase
         var goal = _goalRepository.CreateGoal(newGoal);
         return Ok(goal);
     }
-    //Updates a users goal (will need to update when we implement the user model)
+
     [HttpPut]
     [Route("{goalId:int}")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
