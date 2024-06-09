@@ -88,8 +88,8 @@ public class AuthController: ControllerBase
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ActionResult<User> DeleteUser(string email)
     {
-        var userId = GetUserId();
-        _authService.DeleteUserData(userId);
+        //Ideally would work out password verification into this as well to make sure it is the user and confirms the user would want to delete their account.
+        _authService.DeleteUserData(email);
         return NoContent();
     }
 }

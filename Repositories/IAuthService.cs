@@ -8,5 +8,5 @@ public interface IAuthService
     string SignIn(string email, string password);
     UserDTO GetUserById(int userId);
     User UpdateUserInfo(UserDTO updatedUser, int userId);
-    void DeleteUserData(int userId);
+    void DeleteUserData(string email);
 }

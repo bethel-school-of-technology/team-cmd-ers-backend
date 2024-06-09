@@ -33,9 +33,9 @@ public class AuthService : IAuthService
         return user;
     }
 
-    public void DeleteUserData(int userId)
+    public void DeleteUserData(string email)
     {
-        var user = _context.User.SingleOrDefault(u => u.UserId == userId);
+        var user = _context.User.SingleOrDefault(u => u.Email == email);
 
         if(user != null)
         {
